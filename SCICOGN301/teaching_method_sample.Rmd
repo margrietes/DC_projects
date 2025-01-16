@@ -1,0 +1,124 @@
+---
+title: "Alternative Teaching Method Sample"
+author: "Gabriela Grasmane"
+date: "`r Sys.Date()`"
+output: 
+  html_notebook: # html_document if swithing to Rmd
+    theme: default
+---
+
+# Introduction
+
+Welcome to this beginner-friendly R tutorial! In this guide, we will use R to answer a simple research question. No prior programming experience is required. By the end of this notebook, you will learn how to:
+
+- Load and explore a dataset.
+- Perform basic data analysis.
+- Visualize your results.
+
+## Research Question
+
+**Example:** What is the average age of participants in a sample dataset?
+
+---
+
+## Step 1: Setting Up Your Environment
+
+Before we begin, ensure you have R and RStudio installed on your computer. If not, download them from the following links:
+
+- [R](https://www.r-project.org/)
+- [RStudio](https://rstudio.com/)
+
+### Loading Required Libraries
+
+Libraries in R are like toolkits that extend its functionality. Let’s load the necessary libraries.
+
+```{r}
+# Install libraries if you haven't already
+if (!require("tidyverse")) install.packages("tidyverse")
+
+# Load the tidyverse package
+library(tidyverse)
+```
+
+---
+
+## Step 2: Loading the Dataset
+
+For this tutorial, we will use a sample dataset. If you have your own dataset, you can load it using the same steps.
+
+### Example Dataset
+
+We will use the built-in `mtcars` dataset, which contains information about cars, such as their weight, miles per gallon (mpg), and number of cylinders.
+
+```{r}
+# Load the dataset
+my_data <- mtcars
+
+# View the first few rows of the dataset
+head(my_data)
+```
+
+### Explanation
+- **`my_data <- mtcars`**: Assigns the `mtcars` dataset to a new variable `my_data`.
+- **`head(my_data)`**: Displays the first 6 rows of the dataset.
+
+---
+
+## Step 3: Exploring the Data
+
+It’s important to understand the structure and contents of the dataset before analyzing it.
+
+```{r}
+# Check the structure of the dataset
+str(my_data)
+
+# Get a summary of the dataset
+summary(my_data)
+```
+
+### Explanation
+- **`str(my_data)`**: Shows the structure of the dataset, including variable types.
+- **`summary(my_data)`**: Provides basic statistical summaries for each variable.
+
+---
+
+## Step 4: Analyzing the Data
+
+Now, let’s answer our research question: *What is the average mpg of the cars in the dataset?*
+
+```{r}
+# Calculate the average mpg
+average_mpg <- mean(my_data$mpg)
+
+# Print the result
+average_mpg
+```
+
+### Explanation
+- **`my_data$mpg`**: Accesses the `mpg` column in the dataset.
+- **`mean()`**: Calculates the average of a numeric vector.
+
+---
+
+## Step 5: Visualizing the Data
+
+Visualizations help us better understand the data. Let’s create a histogram of the `mpg` variable.
+
+```{r}
+# Create a histogram of mpg
+my_data %>%
+  ggplot(aes(x = mpg)) +
+  geom_histogram(binwidth = 2, fill = "blue", color = "black") +
+  labs(title = "Distribution of MPG", x = "Miles Per Gallon (MPG)", y = "Count")
+```
+
+### Explanation
+- **`ggplot()`**: A function from the `ggplot2` package for creating visualizations.
+- **`aes(x = mpg)`**: Specifies that the x-axis will represent the `mpg` variable.
+- **`geom_histogram()`**: Creates a histogram with specified bin width and colors.
+
+---
+
+## Step 6: Summarizing Your Findings
+
+Based on our analysis, the average `mpg` of the cars in this dataset is approximately `r round(average_mpg, 2)`. The histogram shows how the `mpg` values are distributed.
