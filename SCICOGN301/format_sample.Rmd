@@ -2,9 +2,7 @@
 title: "Alternative Workshop Format Sample"
 author: "Gabriela Grasmane"
 date: "`r Sys.Date()`"
-output:
-  html_document:
-    df_print: paged
+output: html_notebook
 ---
 
 # Introduction
